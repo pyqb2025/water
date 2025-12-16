@@ -138,13 +138,13 @@ L = len(data) - W
 granularity = 50  # Number of points in the grid (proportion hypotheses considered)
 p_grid = np.linspace(start=0, stop=1, num=granularity)
 
-prior = [] # Define the prior probability distribution
+prior_lst = [] # Define the prior probability distribution
 for p in p_grid:
-    if p < 0.2:  
-        prior.append(0)
+    if p < 0.2:
+        prior_lst.append(0)
     else:
-        prior.append(1)
-prior = np.array(prior) / sum(prior) # normalize: must sum to one
+        prior_lst.append(1)
+prior = np.array(prior_lst) / sum(prior_lst) # normalize: must sum to one
 
 likelihood = dbinom(W, n=W+L, prob=p_grid)
 unstd_posterior = likelihood * prior
@@ -162,7 +162,7 @@ ax.set_ylabel('Probability')
 _ = ax.legend()
 
 # %%
-import pymc as pm
+import pymc as pm # type: ignore
 
 # %%
 with pm.Model() as water_model:

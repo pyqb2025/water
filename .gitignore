@@ -2,3 +2,5 @@
 VENV/
 *.ipynb
 .aider*
+/.mypy_cache/
+/__pycache__/
